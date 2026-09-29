@@ -5,7 +5,7 @@ Flappy Friends
 
 ## Builder / contact
 Builder: Loki Martinez
-Contact: via GitHub / project repo
+Contact: via X: https://x.com/0xmorty_dev
 Category: Character Spotlight
 
 ## One-sentence summary
@@ -82,7 +82,6 @@ This is intentionally a simulated economy. It does not represent an actual token
 
 ### Known limitations
 - This is a demo economy and is not connected to a live $RAREFRIENDS contract or token transfer flow
-- No public hosted preview exists yet; the local SDK preview is the current demo path
 - The wallet gate and eligibility flow remain the SDK runtime responsibility, not custom game code
 - Real blockchain integration would require a verified token contract, wallet signing flow, and server/contract enforcement for daily caps and reward claims
 
