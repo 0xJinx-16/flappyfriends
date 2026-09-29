@@ -1,5 +1,3 @@
-# Flappy Friends
-
 ## Project name
 Flappy Friends
 
