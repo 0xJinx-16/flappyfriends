@@ -1,0 +1,8 @@
+{
+  "name": "Flappy Friends Arcade",
+  "consumable": "Unused SDK schema placeholder",
+  "price": "1",
+  "outcomes": [
+    { "name": "Unused SDK schema placeholder", "chanceBps": 10000, "reward": "1" }
+  ]
+}

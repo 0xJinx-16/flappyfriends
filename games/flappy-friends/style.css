@@ -1,0 +1,49 @@
+.flappy-game{position:relative;isolation:isolate;display:flex;width:100%;height:100%;min-height:0;overflow:hidden;touch-action:none;overscroll-behavior:none;user-select:none;background:#75d9ed;color:#173348;font:12px/1.35 "Courier New",monospace}
+.flappy-canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}
+.flappy-topbar{position:absolute;z-index:2;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:rgba(255,255,255,.92);border-bottom:3px solid #173348}
+.flappy-identity,.flappy-controls{display:flex;align-items:center;gap:7px}
+.flappy-identity{font-size:10px;font-weight:900;white-space:nowrap}
+.flappy-mark{display:grid;width:27px;height:25px;place-items:center;background:#ffd34e;border:2px solid #173348;box-shadow:2px 2px 0 #173348;font-weight:900}
+.flappy-controls button,.flappy-motion{display:inline-flex;min-height:32px;align-items:center;justify-content:center;gap:5px;padding:5px 7px;border:2px solid #173348;background:#fff;color:#173348;font:700 9px/1 "Courier New",monospace;white-space:nowrap}
+.flappy-controls button{cursor:pointer}
+.flappy-controls button:disabled{opacity:.45;cursor:default}
+.flappy-motion{cursor:pointer}
+.flappy-motion input{width:13px;height:13px;margin:0;accent-color:#df684b}
+.flappy-score{position:absolute;z-index:1;top:64px;left:0;right:0;display:grid;justify-items:center;color:#fff;text-align:center;text-shadow:3px 3px #173348,-2px -2px #173348,2px -2px #173348,-2px 2px #173348}
+.flappy-score span{font-size:10px;font-weight:900;letter-spacing:.12em}
+.flappy-score strong{font-size:28px;line-height:1.1;font-weight:900;font-variant-numeric:tabular-nums}
+.flappy-score small{font-size:9px;font-weight:900;letter-spacing:.18em;padding-top:2px}
+.flappy-economy{position:absolute;z-index:1;top:132px;left:50%;transform:translateX(-50%);display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:6px 10px;background:rgba(255,255,255,.8);border:2px solid #173348;box-shadow:3px 3px 0 rgba(23,51,72,.65);color:#173348;font-size:8px;font-weight:900}
+.flappy-economy-badge{color:#ab4538}
+.flappy-footer{position:absolute;z-index:1;right:8px;bottom:8px;left:8px;display:flex;justify-content:space-between;gap:8px;color:#173348;font-size:8px;font-weight:900;text-shadow:0 1px #fff}
+.flappy-rules{color:#ab4538}
+.flappy-overlay{position:absolute;z-index:3;inset:0;display:grid;place-items:center;padding:62px 20px 52px;background:rgba(21,48,64,.2)}
+.flappy-panel{width:min(100%,290px);padding:22px 18px;background:#fff5d6;border:4px solid #173348;box-shadow:6px 6px 0 #173348;text-align:center}
+.flappy-panel h1,.flappy-panel h2{margin:10px 0;color:#173348;font-weight:900;line-height:.98}
+.flappy-panel h1{font-size:34px}
+.flappy-panel h2{font-size:23px}
+.flappy-panel p{margin:12px 0 16px;color:#3c5b68;font-size:12px;font-weight:700}
+.flappy-panel-reward{max-width:300px}
+.flappy-reward{margin:0 0 12px;color:#ab4538;font-size:30px;font-weight:900;line-height:1.1}
+.flappy-run-stats{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;color:#173348;font-size:10px;font-weight:900}
+.flappy-stamp,.flappy-kicker{display:inline-block;color:#ab4538;font-size:9px;font-weight:900}
+.flappy-primary,.flappy-loading button{min-height:46px;padding:9px 16px;border:3px solid #173348;background:#ffd34e;box-shadow:3px 3px 0 #173348;color:#173348;font:900 13px/1 "Courier New",monospace;cursor:pointer}
+.flappy-primary:active,.flappy-loading button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #173348}
+.flappy-message{display:block;margin-top:10px;color:#173348;font-size:10px;font-weight:900;line-height:1.35}
+.flappy-loading{align-items:center;justify-content:center;padding:20px}
+.flappy-loading-card{width:min(100%,300px);padding:22px;background:#fff5d6;border:4px solid #173348;box-shadow:6px 6px 0 #173348;text-align:center}
+.flappy-loading-card h1{font-size:20px}
+.flappy-loading-card p{overflow-wrap:anywhere}
+@media(max-width:380px){
+	.flappy-topbar{padding:8px 7px;gap:4px}
+	.flappy-identity{gap:4px;font-size:8px}
+	.flappy-mark{width:22px;height:22px}
+	.flappy-controls{gap:4px}
+	.flappy-controls button,.flappy-motion{min-height:29px;padding:4px;font-size:8px}
+	.flappy-score{top:58px}
+	.flappy-score strong{font-size:24px}
+	.flappy-economy{top:118px;max-width:220px}
+	.flappy-footer{font-size:7px}
+	.flappy-panel{padding:19px 14px}
+}
+@media(prefers-reduced-motion:reduce){.flappy-primary:active,.flappy-loading button:active{transform:none}}
