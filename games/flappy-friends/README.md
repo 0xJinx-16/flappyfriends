@@ -39,7 +39,10 @@ node --test tests/flappy-friends-economy.test.mjs
 - This prototype is a demo economy and does not submit live token transactions or claim real $RAREFRIENDS
 
 ## Playable preview / demo
-Public playable preview: not yet published to a hosting service for this local SDK prototype.
+Public preview URL, after enabling GitHub Pages and a successful workflow run:
+- https://0xjinx-16.github.io/flappyfriends/
+
+GitHub Actions builds and deploys the preview from `.github/workflows/pages.yml`.
 
 Local preview URL:
 - http://localhost:4173

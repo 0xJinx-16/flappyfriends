@@ -1,0 +1,66 @@
+name: Deploy FriendSDK preview
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out game source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check out FriendSDK v0.1.3
+        run: git clone --depth 1 --branch v0.1.3 https://github.com/spokesz/friendsdk.git "$RUNNER_TEMP/friendsdk"
+
+      - name: Add game to SDK build
+        env:
+          SDK_DIR: ${{ runner.temp }}/friendsdk
+        run: |
+          mkdir -p "$SDK_DIR/games/flappy-friends"
+          cp -a "$GITHUB_WORKSPACE/games/flappy-friends/." "$SDK_DIR/games/flappy-friends/"
+          rm -rf "$SDK_DIR/games/flappy-friends/.friendsdk"
+
+      - name: Build and validate game
+        working-directory: ${{ runner.temp }}/friendsdk
+        run: |
+          npm ci
+          npm run build
+          npx friendsdk build games/flappy-friends
+          npx friendsdk check games/flappy-friends
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/friendsdk/games/flappy-friends/.friendsdk
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
