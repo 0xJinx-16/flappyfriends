@@ -1,50 +1,97 @@
-# Rare Friends Vibeathon
+# Flappy Friends
 
-**September 20–30, 2026 · $40,000 advertised prize pool**
+## Project name
+Flappy Friends
 
-1 prompt. 1 Rare Friend. Build something interesting for Rare Friends: a minigame, virtual pet, idle game, gacha, launchpad, tool, agent, or something new. AI-assisted builds are welcome. One working core interaction is enough.
+## Builder / contact
+Builder: Loki Martinez
+Contact: via X: https://x.com/0xmorty_dev
+Category: Character Spotlight
 
-## Choose your approach
+## One-sentence summary
+Flappy Friends is a mobile-first 8-bit arcade game where the selected Rare Friends Generations NFT becomes the player character, with a simulated $RAREFRIENDS reward loop layered on top of the classic flap-through-the-pipes gameplay.
 
-### Games using FriendSDK
+## Source code and setup
+Source repository: https://github.com/0xJinx-16/flappyfriends.git
 
-Use [FriendSDK v0.1.2](https://github.com/spokesz/friendsdk) when its game runtime fits your idea.
+This project uses FriendSDK v0.1.3 and runs inside the SDK runtime sandbox. The game component is located in `games/flappy-friends` and includes the game logic, HTML/CSS styling, local economy simulation, and README.
 
-- **Make your selected Rare Friend part of the experience** and preserve its original character artwork.
-- **Use the SDK's wallet and Friend selection.** Builders and players need a wallet holding a hardwired Generations NFT, generation 1 or higher, on Robinhood mainnet—even for previews.
-- **Keep everything inside the SDK's 960 × 640 viewport.** Your world can be larger: custom cameras, scrolling maps and custom renderers are welcome. Support keyboard and touch, with usable loading, error, mute and reduced-motion controls.
+### Local run instructions
+From the FriendSDK repo root:
 
-Choose your own world, artwork and style. Start with the SDK's starter example and make the main interaction work from beginning to end.
+```sh
+npm ci
+npm run dev:game -- games/flappy-friends
+```
 
-### Projects without FriendSDK
+Optional validation commands:
 
-**FriendSDK is optional.** If your idea needs a different interface or capabilities the SDK does not provide—such as a launchpad, tool or agent—use the stack that fits. Explain how it connects to Rare Friends or $RAREFRIENDS, and demonstrate one working interaction. The SDK's game container and game controls apply to SDK games. Document any wallet or identity requirements your project needs.
+```sh
+npm run build
+npm run check:games
+node --test tests/flappy-friends-economy.test.mjs
+```
 
-For either approach, **keep purchases and rewards simulated for your MVP, and label them clearly.** Live contracts and real-money transactions are not required to submit. Describe features that need future support or integration.
+### Runtime requirements
+- Wallet connection required by the SDK runtime
+- Robinhood mainnet (chain 4663)
+- A connected wallet holding a hardwired Rare Friends Generations NFT (generation 1 or higher)
+- This prototype is a demo economy and does not submit live token transactions or claim real $RAREFRIENDS
 
-## How to submit
+## Playable preview / demo
+Public preview URL, after enabling GitHub Pages and a successful workflow run:
+- https://0xjinx-16.github.io/flappyfriends/
 
-Open a pull request in this repository adding `submissions/your-project/README.md` by **September 30, 2026**. Exact cutoff time and timezone: **TBA**.
+GitHub Actions builds and deploys the preview from `.github/workflows/pages.yml`.
 
-Use the [Fishing example submission](https://github.com/spokesz/rarefriends-vibeathon/pull/1) as a format guide, adapting the game-specific details to your project. Include these details in your submission README and PR description:
+Local preview URL:
+- http://localhost:4173
 
-- **Project name, builder name/contact and category.**
-- **One sentence** explaining the project and how it uses Rare Friends or $RAREFRIENDS.
-- **Source repository** with code, assets and clear setup and run instructions. State whether you use FriendSDK and its version, or name your stack.
-- **Playable preview or demo.** Games must include a public playable preview link; web tools and agents must include a working demo link. For CLI tools or background agents without a web interface, include a reproducible demo command and a short recording or example output. State any wallet and network requirements.
-- **How to use it.** Describe controls and game rules, or the steps to try your tool, agent or other project. If applicable, list RF costs, outcome probabilities, rewards and consumable rules. Credit any third-party assets.
-- **Checks and known issues.** For SDK games, run relevant tests, typecheck, game validation and browser checks. For other projects, report checks appropriate to the stack and main interaction. Report failures, limitations and any known risks involving wallets or funds.
+Wallet and network requirements:
+- Open the game in the SDK runtime with a browser wallet connected to Robinhood mainnet
+- The wallet must own a valid Rare Friends Generations NFT selected through the SDK flow
 
-Submit early and improve your entry during the event. **You may host public playable previews and working demos on GitHub Pages or another static host. No separate Rare Friends approval is needed for submission previews.** For SDK games, follow the [build and hosting steps](https://github.com/spokesz/friendsdk#build-and-share-a-preview), keeping the ownership gate and simulated economy intact. Official production publication through Rare Friends still requires a separate review.
+## How to use it
 
-Need help choosing an approach or submitting? Join [Vibeathon support on Telegram](https://t.me/RFVibeathon).
+### Controls
+- Tap the playfield on Android or click on desktop to flap
+- Press Space or Arrow Up to flap
+- Use Pause / Resume when needed
+- Use the in-game overlay to pay the demo entry burn and begin a run
 
-## Categories and prizes
+### Game rules
+- Fly through gaps between green pipes
+- Score 1 point per pipe pair cleared
+- Colliding with a pipe, ceiling, or ground ends the run
+- The selected Rare Friends NFT remains the player character throughout the match
+- A higher score increases the simulated RF reward, but the reward is capped per run and per day
 
-| Category | What it recognises | 1st | 2nd | 3rd |
-|---|---|---|---|---|
-| Character Spotlight | Best use of a Generations NFT as the main character | $1,000 + 1 Genesis NFT | $500 + 10 Gen-1 NFTs | $250 + 9 Gen-1 NFTs |
-| Token Activity | Most successful at burning or spending $RAREFRIENDS | $1,000 + 1 Genesis NFT | $500 + 10 Gen-1 NFTs | $250 + 9 Gen-1 NFTs |
-| Economy Potential | Best potential for a token economy paired with $RAREFRIENDS | $1,000 + 1 Genesis NFT | $500 + 10 Gen-1 NFTs | $250 + 9 Gen-1 NFTs |
+### Demo economy rules
+This is intentionally a simulated economy. It does not represent an actual token transfer or real wallet balance.
 
-**Details pending:** seven additional paid spots are advertised alongside the $40,000 total pool. Remaining payouts, NFT valuations and how simulated entries are judged for Token Activity are TBA.
+- Entry burn: 100 RF
+- Max reward per run: 250 RF
+- Daily reward cap: 1000 RF
+- Reward curve: diminishing returns with a hard cap
+- Claim flow: pending reward then claim in-game
+- Local mode only: no real contract, no real token burn, no real RF claim
+
+## Checks and known issues
+
+### Checks run
+- `npm run build` — passed
+- `npm run check:games` — passed
+- `node --test tests/flappy-friends-economy.test.mjs` — passed
+
+### Known limitations
+- This is a demo economy and is not connected to a live $RAREFRIENDS contract or token transfer flow
+- The wallet gate and eligibility flow remain the SDK runtime responsibility, not custom game code
+- Real blockchain integration would require a verified token contract, wallet signing flow, and server/contract enforcement for daily caps and reward claims
+
+### Asset credits
+- Rare Friends Generations canonical sprite frames are loaded through the FriendSDK sprite reader
+- Local art, canvas rendering, and frame tilts are implemented in-game and are presentation-only modifications of the SDK-provided artwork
+- No third-party copyrighted Flappy Bird art or non-licensed assets are used
+
+## Notes
+This submission is intentionally designed as a FriendSDK-compatible arcade prototype that keeps the wallet identity and selected NFT flow in the trusted runtime while keeping the actual economy in a controlled local simulation layer until a real $RAREFRIENDS contract and production integration are available.
